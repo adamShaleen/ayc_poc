@@ -1,0 +1,9 @@
+{
+  "name": "Astoria Yacht Club",
+  "short_name": "AYC",
+  "description": "Astoria Yacht Club - Sailing on the Columbia River since 1931",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#1e3a8a",
+  "theme_color": "#1e3a8a"
+}
