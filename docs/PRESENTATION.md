@@ -55,6 +55,48 @@ A modern, custom-built website using Next.js 14 that provides:
 
 ---
 
+## Important: About This Proof of Concept
+
+**Please note: This is a demonstration of capabilities, not a finished product.**
+
+### What You're Reviewing
+
+This proof of concept is designed to showcase the **technical capabilities** and **potential features** of a modern website platform. As you review this presentation, please keep in mind:
+
+#### Content & Copy
+- **Much of the text is placeholder content** - specific language, wording, and messaging can (and should) be refined with board input
+- Some content may be **inaccurate or not reflect current club policies** - this will all be corrected during content migration
+- All copy is **fully customizable** through the content management system
+
+#### Design & Branding
+- **Every visual element is flexible** - colors, fonts, layouts, spacing, and imagery can be adjusted
+- The current design is a **starting point for discussion**, not a final decision
+- **Nothing is set in stone** - if you don't like something, it can be changed
+
+#### Purpose of This Demo
+
+The goal is to demonstrate:
+- ✓ **What's technically possible** with modern web technology
+- ✓ **Performance improvements** over the current platform
+- ✓ **Feature capabilities** that weren't feasible with Wix
+- ✓ **User experience enhancements** for members and visitors
+
+This is **not** meant to:
+- ✗ Present final, approved content
+- ✗ Lock in specific design choices
+- ✗ Bypass board input on messaging and branding
+
+### Your Feedback Matters
+
+We welcome your input on:
+- Overall direction and approach
+- Features that are most valuable to the club
+- Content priorities and messaging
+- Design preferences and branding
+- Any concerns or questions about the transition
+
+---
+
 ## Visual Comparison
 
 ### Homepage Comparison
@@ -106,6 +148,51 @@ A modern, custom-built website using Next.js 14 that provides:
 | **Membership** | Static text, hidden forms | Clear pricing, streamlined application |
 | **Racing** | Scattered information | Organized schedule, crew finder, results |
 | **About/Board** | Basic page | Interactive timeline, expandable profiles |
+
+---
+
+## Visual Showcase
+
+### Homepage Design
+
+The new homepage creates an immediate professional impression with optimized imagery and clear navigation.
+
+![Homepage Overview](screenshots/home-page.png)
+*Full homepage showing hero section, navigation, and key content areas*
+
+#### Featured Content Section
+
+![Featured Content](screenshots/home-page-featured.png)
+*Highlighted events and announcements with visual appeal*
+
+#### Getting Started Guide
+
+![Getting Started](screenshots/home-page-getting-started.png)
+*Clear calls-to-action for new visitors and prospective members*
+
+### Membership Pages
+
+#### Membership Comparison
+
+![Membership Tiers](screenshots/membership-compare.png)
+*Clear, easy-to-understand membership tier comparison*
+
+#### Membership Application Process
+
+![How to Join](screenshots/membership-howto.png)
+*Streamlined application process with clear steps*
+
+### User Experience Elements
+
+#### FAQ Section
+
+![FAQ Component](screenshots/faq.png)
+*Interactive FAQ with expandable sections for easy information discovery*
+
+#### Footer Design
+
+![Footer](screenshots/footer.png)
+*Comprehensive footer with contact information, quick links, and social media*
 
 ---
 
@@ -500,7 +587,6 @@ This proof of concept represents a significant development investment:
 ---
 
 *Document prepared by [Your Name]*
-*Astoria Yacht Club Member*
 *January 2025*
 
 ---

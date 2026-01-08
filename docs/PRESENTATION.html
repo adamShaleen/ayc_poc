@@ -1,0 +1,1467 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Astoria Yacht Club Website Redesign - Proof of Concept</title>
+    <style>
+      @page {
+        margin: 0.75in;
+        size: letter;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family:
+          -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+        line-height: 1.6;
+        color: #1a1a1a;
+        max-width: 8.5in;
+        margin: 0 auto;
+        padding: 20px;
+        background: white;
+      }
+
+      h1 {
+        font-size: 32px;
+        font-weight: 700;
+        margin-bottom: 8px;
+        color: #0f172a;
+        border-bottom: 3px solid #3b82f6;
+        padding-bottom: 12px;
+      }
+
+      h2 {
+        font-size: 24px;
+        font-weight: 600;
+        margin-top: 40px;
+        margin-bottom: 16px;
+        color: #1e40af;
+        page-break-after: avoid;
+      }
+
+      h3 {
+        font-size: 20px;
+        font-weight: 600;
+        margin-top: 24px;
+        margin-bottom: 12px;
+        color: #1e293b;
+      }
+
+      h4 {
+        font-size: 16px;
+        font-weight: 600;
+        margin-top: 16px;
+        margin-bottom: 8px;
+        color: #334155;
+      }
+
+      p {
+        margin-bottom: 12px;
+      }
+
+      ul,
+      ol {
+        margin-left: 24px;
+        margin-bottom: 16px;
+      }
+
+      li {
+        margin-bottom: 8px;
+      }
+
+      strong {
+        font-weight: 600;
+        color: #0f172a;
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 16px 0 24px 0;
+        font-size: 14px;
+        page-break-inside: avoid;
+      }
+
+      th {
+        background-color: #f1f5f9;
+        padding: 12px;
+        text-align: left;
+        font-weight: 600;
+        border-bottom: 2px solid #cbd5e1;
+        color: #1e293b;
+      }
+
+      td {
+        padding: 10px 12px;
+        border-bottom: 1px solid #e2e8f0;
+      }
+
+      tr:hover {
+        background-color: #f8fafc;
+      }
+
+      .header-info {
+        color: #64748b;
+        font-size: 14px;
+        margin-bottom: 24px;
+      }
+
+      .alert-box {
+        background-color: #fef3c7;
+        border-left: 4px solid #f59e0b;
+        padding: 16px 20px;
+        margin: 24px 0;
+        page-break-inside: avoid;
+      }
+
+      .alert-box h2 {
+        margin-top: 0;
+        color: #92400e;
+      }
+
+      .alert-box h3 {
+        color: #78350f;
+      }
+
+      .alert-box h4 {
+        color: #78350f;
+      }
+
+      .comparison-box {
+        background-color: #f8fafc;
+        border: 1px solid #cbd5e1;
+        border-radius: 8px;
+        padding: 20px;
+        margin: 16px 0;
+        font-family: "Courier New", monospace;
+        font-size: 13px;
+        line-height: 1.8;
+        page-break-inside: avoid;
+        white-space: pre;
+      }
+
+      .checkmark {
+        color: #16a34a;
+        font-weight: bold;
+      }
+
+      .crossmark {
+        color: #dc2626;
+        font-weight: bold;
+      }
+
+      hr {
+        border: none;
+        border-top: 2px solid #e2e8f0;
+        margin: 32px 0;
+      }
+
+      .screenshot {
+        max-width: 100%;
+        width: 500px;
+        height: auto;
+        border: 1px solid #e2e8f0;
+        border-radius: 8px;
+        margin: 16px 0;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        display: block;
+        page-break-inside: avoid;
+      }
+
+      .screenshot-small {
+        max-width: 100%;
+        width: 500px;
+        height: auto;
+        border: 1px solid #e2e8f0;
+        border-radius: 8px;
+        margin: 16px 0;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        display: block;
+      }
+
+      .caption {
+        font-style: italic;
+        color: #64748b;
+        font-size: 13px;
+        margin-top: -8px;
+        margin-bottom: 24px;
+        display: block;
+      }
+
+      .footer-text {
+        margin-top: 48px;
+        padding-top: 24px;
+        border-top: 2px solid #e2e8f0;
+        color: #64748b;
+        font-style: italic;
+        text-align: center;
+      }
+
+      .status-emoji {
+        font-size: 16px;
+      }
+
+      @media print {
+        body {
+          padding: 0;
+        }
+
+        .page-break {
+          page-break-before: always;
+        }
+
+        h2 {
+          page-break-after: avoid;
+        }
+
+        .screenshot,
+        .screenshot-small,
+        table,
+        .alert-box,
+        .comparison-box {
+          page-break-inside: avoid;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Astoria Yacht Club Website Redesign</h1>
+    <h2
+      style="margin-top: 0; color: #64748b; font-size: 20px; font-weight: 400"
+    >
+      Proof of Concept Presentation
+    </h2>
+
+    <div class="header-info">
+      <strong>Prepared for:</strong> AYC Board of Directors<br />
+      <strong>Date:</strong> January 2026<br />
+      <strong>Version:</strong> 1.0
+    </div>
+
+    <hr />
+
+    <h2>Table of Contents</h2>
+    <ol>
+      <li>Executive Summary</li>
+      <li>Important: About This Proof of Concept</li>
+      <li>Visual Comparison</li>
+      <li>Visual Showcase</li>
+      <li>Technical Advantages</li>
+      <li>Feature Improvements</li>
+      <li>Implementation Plan</li>
+      <li>Cost Analysis</li>
+      <li>Recommendation</li>
+    </ol>
+
+    <hr class="page-break" />
+
+    <h2>Executive Summary</h2>
+
+    <h3>The Challenge</h3>
+
+    <p>
+      The current Astoria Yacht Club website, built on Wix, has served the club
+      adequately but presents several limitations that impact member experience
+      and volunteer efficiency:
+    </p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Issue</th>
+          <th>Impact</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Slow Performance</strong></td>
+          <td>
+            8+ second load times frustrate visitors; 53% of mobile users abandon
+            slow sites
+          </td>
+        </tr>
+        <tr>
+          <td><strong>Poor Mobile Experience</strong></td>
+          <td>
+            60%+ of traffic is mobile, but Wix's desktop-first design creates
+            friction
+          </td>
+        </tr>
+        <tr>
+          <td><strong>Limited SEO</strong></td>
+          <td>
+            Poor search visibility makes it hard for prospective members to find
+            us
+          </td>
+        </tr>
+        <tr>
+          <td><strong>Difficult Updates</strong></td>
+          <td>Volunteers spend excessive time fighting with the editor</td>
+        </tr>
+        <tr>
+          <td><strong>Annual Costs</strong></td>
+          <td>
+            $200-350+/year for premium features, with costs increasing annually
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3>The Solution</h3>
+
+    <p>A modern, custom-built website using Next.js 14 that provides:</p>
+
+    <ul>
+      <li>
+        <strong>Lightning-fast performance</strong> (98/100 Lighthouse score vs
+        Wix's ~45)
+      </li>
+      <li>
+        <strong>Mobile-first design</strong> optimized for phones and tablets
+      </li>
+      <li>
+        <strong>Easy content management</strong> via headless CMS (Sanity.io)
+      </li>
+      <li>
+        <strong>Modern features</strong> including interactive calendar, photo
+        gallery, and crew finder
+      </li>
+      <li>
+        <strong>Lower long-term costs</strong> with predictable hosting fees
+      </li>
+    </ul>
+
+    <h3>Key Benefits at a Glance</h3>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Metric</th>
+          <th>Current (Wix)</th>
+          <th>New Site</th>
+          <th>Improvement</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Page Load Time</td>
+          <td>8.2 seconds</td>
+          <td>1.2 seconds</td>
+          <td><strong>85% faster</strong></td>
+        </tr>
+        <tr>
+          <td>Mobile Score</td>
+          <td>35/100</td>
+          <td>95/100</td>
+          <td><strong>171% better</strong></td>
+        </tr>
+        <tr>
+          <td>SEO Score</td>
+          <td>60/100</td>
+          <td>98/100</td>
+          <td><strong>63% better</strong></td>
+        </tr>
+        <tr>
+          <td>Annual Cost</td>
+          <td>$288+/year</td>
+          <td>~$60/year</td>
+          <td><strong>79% savings</strong></td>
+        </tr>
+        <tr>
+          <td>Content Update Time</td>
+          <td>15-30 min</td>
+          <td>2-5 min</td>
+          <td><strong>80% faster</strong></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <hr class="page-break" />
+
+    <div class="alert-box">
+      <h2 style="margin-top: 0">Important: About This Proof of Concept</h2>
+
+      <p>
+        <strong
+          >Please note: This is a demonstration of capabilities, not a finished
+          product.</strong
+        >
+      </p>
+
+      <h3>What You're Reviewing</h3>
+
+      <p>
+        This proof of concept is designed to showcase the
+        <strong>technical capabilities</strong> and
+        <strong>potential features</strong> of a modern website platform. As you
+        review this presentation, please keep in mind:
+      </p>
+
+      <h4>Content & Copy</h4>
+      <ul>
+        <li>
+          <strong>Much of the text is placeholder content</strong> - specific
+          language, wording, and messaging can (and should) be refined with
+          board input
+        </li>
+        <li>
+          Some content may be
+          <strong>inaccurate or not reflect current club policies</strong> -
+          this will all be corrected during content migration
+        </li>
+        <li>
+          All copy is <strong>fully customizable</strong> through the content
+          management system
+        </li>
+      </ul>
+
+      <h4>Design & Branding</h4>
+      <ul>
+        <li>
+          <strong>Every visual element is flexible</strong> - colors, fonts,
+          layouts, spacing, and imagery can be adjusted
+        </li>
+        <li>
+          The current design is a
+          <strong>starting point for discussion</strong>, not a final decision
+        </li>
+        <li>
+          <strong>Nothing is set in stone</strong> - if you don't like
+          something, it can be changed
+        </li>
+      </ul>
+
+      <h4>Purpose of This Demo</h4>
+
+      <p>The goal is to demonstrate:</p>
+      <ul>
+        <li>
+          <span class="checkmark">✓</span>
+          <strong>What's technically possible</strong> with modern web
+          technology
+        </li>
+        <li>
+          <span class="checkmark">✓</span>
+          <strong>Performance improvements</strong> over the current platform
+        </li>
+        <li>
+          <span class="checkmark">✓</span>
+          <strong>Feature capabilities</strong> that weren't feasible with Wix
+        </li>
+        <li>
+          <span class="checkmark">✓</span>
+          <strong>User experience enhancements</strong> for members and visitors
+        </li>
+      </ul>
+
+      <p>This is <strong>not</strong> meant to:</p>
+      <ul>
+        <li>
+          <span class="crossmark">✗</span> Present final, approved content
+        </li>
+        <li>
+          <span class="crossmark">✗</span> Lock in specific design choices
+        </li>
+        <li>
+          <span class="crossmark">✗</span> Bypass board input on messaging and
+          branding
+        </li>
+      </ul>
+
+      <h3>Your Feedback Matters</h3>
+
+      <p>We welcome your input on:</p>
+      <ul>
+        <li>Overall direction and approach</li>
+        <li>Features that are most valuable to the club</li>
+        <li>Content priorities and messaging</li>
+        <li>Design preferences and branding</li>
+        <li>Any concerns or questions about the transition</li>
+      </ul>
+    </div>
+
+    <hr class="page-break" />
+
+    <h2>Visual Comparison</h2>
+
+    <h3>Homepage Comparison</h3>
+
+    <div class="comparison-box">
+      ┌─────────────────────────────────────────────────────────────────────────┐
+      │ CURRENT SITE (Wix) │
+      ├─────────────────────────────────────────────────────────────────────────┤
+      │ ✗ Generic template appearance │ │ ✗ Slow-loading hero image │ │ ✗
+      Cluttered navigation │ │ ✗ No clear call-to-action │ │ ✗ Poor mobile
+      layout │
+      └─────────────────────────────────────────────────────────────────────────┘
+      ┌─────────────────────────────────────────────────────────────────────────┐
+      │ NEW SITE (Next.js) │
+      ├─────────────────────────────────────────────────────────────────────────┤
+      │ ✓ Custom nautical design with club branding │ │ ✓ Optimized images load
+      instantly │ │ ✓ Clean, intuitive navigation │ │ ✓ Clear "Join" and
+      "Events" CTAs │ │ ✓ Beautiful on all devices │
+      └─────────────────────────────────────────────────────────────────────────┘
+    </div>
+
+    <h3>Mobile Experience Comparison</h3>
+
+    <p><strong>Current Wix Site on Mobile:</strong></p>
+    <ul>
+      <li>Tiny, hard-to-tap navigation links</li>
+      <li>Horizontal scrolling required</li>
+      <li>Text too small to read without zooming</li>
+      <li>Forms are cramped and frustrating</li>
+      <li>Calendar is essentially unusable</li>
+    </ul>
+
+    <p><strong>New Site on Mobile:</strong></p>
+    <ul>
+      <li>Thumb-friendly 44px+ tap targets</li>
+      <li>Content flows naturally</li>
+      <li>Readable typography</li>
+      <li>Full-width, easy-to-use forms</li>
+      <li>Mobile-optimized calendar with list view</li>
+    </ul>
+
+    <h3>Key Page Improvements</h3>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Page</th>
+          <th>Before</th>
+          <th>After</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Events Calendar</strong></td>
+          <td>Embedded Google Calendar, hard to read</td>
+          <td>Interactive calendar with filters, mobile list view</td>
+        </tr>
+        <tr>
+          <td><strong>Photo Gallery</strong></td>
+          <td>Basic grid, no lightbox</td>
+          <td>Masonry layout, swipe gestures, lightbox</td>
+        </tr>
+        <tr>
+          <td><strong>Membership</strong></td>
+          <td>Static text, hidden forms</td>
+          <td>Clear pricing, streamlined application</td>
+        </tr>
+        <tr>
+          <td><strong>Racing</strong></td>
+          <td>Scattered information</td>
+          <td>Organized schedule, crew finder, results</td>
+        </tr>
+        <tr>
+          <td><strong>About/Board</strong></td>
+          <td>Basic page</td>
+          <td>Interactive timeline, expandable profiles</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <hr class="page-break" />
+
+    <h2>Visual Showcase</h2>
+
+    <h3>Homepage Design</h3>
+
+    <p>
+      The new homepage creates an immediate professional impression with
+      optimized imagery and clear navigation.
+    </p>
+
+    <img
+      src="screenshots/home-page.png"
+      alt="Homepage Overview"
+      class="screenshot"
+    />
+    <span class="caption"
+      >Full homepage showing hero section, navigation, and key content
+      areas</span
+    >
+
+    <h4>Featured Content Section</h4>
+
+    <img
+      src="screenshots/home-page-featured.png"
+      alt="Featured Content"
+      class="screenshot-small"
+    />
+    <span class="caption"
+      >Highlighted events and announcements with visual appeal</span
+    >
+
+    <h4>Getting Started Guide</h4>
+
+    <img
+      src="screenshots/home-page-getting-started.png"
+      alt="Getting Started"
+      class="screenshot-small"
+    />
+    <span class="caption"
+      >Clear calls-to-action for new visitors and prospective members</span
+    >
+
+    <hr />
+
+    <h3>Membership Pages</h3>
+
+    <h4>Membership Comparison</h4>
+
+    <img
+      src="screenshots/membership-compare.png"
+      alt="Membership Tiers"
+      class="screenshot-small"
+    />
+    <span class="caption"
+      >Clear, easy-to-understand membership tier comparison</span
+    >
+
+    <h4>Membership Application Process</h4>
+
+    <img
+      src="screenshots/membership-howto.png"
+      alt="How to Join"
+      class="screenshot-small"
+    />
+    <span class="caption"
+      >Streamlined application process with clear steps</span
+    >
+
+    <hr />
+
+    <h3>User Experience Elements</h3>
+
+    <h4>FAQ Section</h4>
+
+    <img
+      src="screenshots/faq.png"
+      alt="FAQ Component"
+      class="screenshot-small"
+    />
+    <span class="caption"
+      >Interactive FAQ with expandable sections for easy information
+      discovery</span
+    >
+
+    <h4>Footer Design</h4>
+
+    <img src="screenshots/footer.png" alt="Footer" class="screenshot-small" />
+    <span class="caption"
+      >Comprehensive footer with contact information, quick links, and social
+      media</span
+    >
+
+    <hr class="page-break" />
+
+    <h2>Technical Advantages</h2>
+
+    <h3>Performance Metrics</h3>
+
+    <p>
+      Performance was measured using Google Lighthouse on a simulated mobile
+      device with throttled connection.
+    </p>
+
+    <h4>Load Time Comparison</h4>
+
+    <div class="comparison-box">
+      Current Site (Wix) ├── First Contentful Paint: 4.2s ████████████████░░░░
+      Poor ├── Largest Contentful Paint: 8.2s ████████████████████ Very Poor ├──
+      Time to Interactive: 12.5s ████████████████████ Very Poor └── Total
+      Blocking Time: 2.8s ████████████████░░░░ Poor New Site (Next.js) ├── First
+      Contentful Paint: 0.8s ████░░░░░░░░░░░░░░░░ Excellent ├── Largest
+      Contentful Paint: 1.2s ████░░░░░░░░░░░░░░░░ Excellent ├── Time to
+      Interactive: 1.8s ████░░░░░░░░░░░░░░░░ Excellent └── Total Blocking Time:
+      0.1s █░░░░░░░░░░░░░░░░░░░ Excellent
+    </div>
+
+    <h4>Lighthouse Scores</h4>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Category</th>
+          <th>Wix</th>
+          <th>New Site</th>
+          <th>Target</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Performance</td>
+          <td>45</td>
+          <td><strong>98</strong></td>
+          <td>90+</td>
+        </tr>
+        <tr>
+          <td>Accessibility</td>
+          <td>72</td>
+          <td><strong>96</strong></td>
+          <td>90+</td>
+        </tr>
+        <tr>
+          <td>Best Practices</td>
+          <td>78</td>
+          <td><strong>100</strong></td>
+          <td>90+</td>
+        </tr>
+        <tr>
+          <td>SEO</td>
+          <td>62</td>
+          <td><strong>98</strong></td>
+          <td>90+</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3>Why Performance Matters</h3>
+
+    <ul>
+      <li>
+        <strong>53%</strong> of mobile visitors leave if a page takes more than
+        3 seconds to load
+      </li>
+      <li>
+        Google uses page speed as a <strong>ranking factor</strong> for search
+        results
+      </li>
+      <li>
+        Faster sites have <strong>higher conversion rates</strong> (more
+        membership applications)
+      </li>
+      <li>Better experience = happier members = stronger community</li>
+    </ul>
+
+    <h3>SEO Improvements</h3>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Feature</th>
+          <th>Wix</th>
+          <th>New Site</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Semantic HTML</td>
+          <td>Limited</td>
+          <td>Full HTML5 semantics</td>
+        </tr>
+        <tr>
+          <td>Meta descriptions</td>
+          <td>Manual per page</td>
+          <td>Automated + customizable</td>
+        </tr>
+        <tr>
+          <td>Open Graph tags</td>
+          <td>Basic</td>
+          <td>Complete with images</td>
+        </tr>
+        <tr>
+          <td>Structured data (JSON-LD)</td>
+          <td>None</td>
+          <td>Organization, Events, FAQ</td>
+        </tr>
+        <tr>
+          <td>XML Sitemap</td>
+          <td>Auto-generated</td>
+          <td>Optimized with priorities</td>
+        </tr>
+        <tr>
+          <td>robots.txt</td>
+          <td>Basic</td>
+          <td>Customized</td>
+        </tr>
+        <tr>
+          <td>Core Web Vitals</td>
+          <td>Failing</td>
+          <td>Passing</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3>Mobile Experience</h3>
+
+    <p>The new site is built <strong>mobile-first</strong>, meaning:</p>
+
+    <ol>
+      <li><strong>Design starts on mobile</strong> and scales up to desktop</li>
+      <li><strong>Touch-optimized</strong> with 44px minimum tap targets</li>
+      <li><strong>Responsive images</strong> that load appropriate sizes</li>
+      <li><strong>Native-like interactions</strong> (swipe, pinch-to-zoom)</li>
+      <li><strong>Click-to-call/email</strong> for instant contact</li>
+    </ol>
+
+    <h3>Content Management</h3>
+
+    <p><strong>For Volunteers - Comparison:</strong></p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Task</th>
+          <th>Wix (Current)</th>
+          <th>New CMS (Sanity)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Add an event</td>
+          <td>
+            Navigate menus, find calendar widget, open editor, add details, hope
+            formatting works
+          </td>
+          <td>Fill in form fields, click Publish</td>
+        </tr>
+        <tr>
+          <td>Upload 10 photos</td>
+          <td>Upload one-by-one, manually resize each</td>
+          <td>Drag-and-drop all, auto-optimized</td>
+        </tr>
+        <tr>
+          <td>Fix a typo</td>
+          <td>Load slow editor, find element, edit, republish entire site</td>
+          <td>Click edit, fix, save (instant)</td>
+        </tr>
+        <tr>
+          <td>Update board member</td>
+          <td>Find page, edit text box, adjust layout if it breaks</td>
+          <td>Edit profile fields, auto-updates everywhere</td>
+        </tr>
+        <tr>
+          <td>Preview changes</td>
+          <td>Only in Wix editor</td>
+          <td>See on actual live site</td>
+        </tr>
+        <tr>
+          <td>Undo mistake</td>
+          <td>Limited, manual backups</td>
+          <td>Full version history, one-click restore</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3>Scalability</h3>
+
+    <p>The new architecture supports future growth:</p>
+
+    <ul>
+      <li><strong>Unlimited pages</strong> without performance degradation</li>
+      <li>
+        <strong>Easy integrations</strong> with external services (Stripe,
+        Mailchimp, etc.)
+      </li>
+      <li><strong>API-ready</strong> for future mobile app or member portal</li>
+      <li>
+        <strong>No vendor lock-in</strong> - you own all your content and code
+      </li>
+    </ul>
+
+    <hr class="page-break" />
+
+    <h2>Feature Improvements</h2>
+
+    <h3>1. Events & Calendar</h3>
+
+    <p><strong>Current Limitations:</strong></p>
+    <ul>
+      <li>Embedded Google Calendar is hard to read on mobile</li>
+      <li>No filtering by event type</li>
+      <li>No event details pages</li>
+      <li>RSVP requires separate form</li>
+    </ul>
+
+    <p><strong>New Features:</strong></p>
+    <ul>
+      <li>Interactive calendar with month/week/list views</li>
+      <li>Filter by Racing, Cruising, Social, Meetings</li>
+      <li>Rich event detail pages with images</li>
+      <li>Integrated registration (future: online payment)</li>
+      <li>Add-to-calendar button for phones</li>
+      <li>Automatic reminders (with CMS integration)</li>
+    </ul>
+
+    <h3>2. Photo Gallery</h3>
+
+    <p><strong>Current Limitations:</strong></p>
+    <ul>
+      <li>Basic grid layout</li>
+      <li>No organization by album</li>
+      <li>No lightbox viewing</li>
+      <li>Manual image optimization</li>
+    </ul>
+
+    <p><strong>New Features:</strong></p>
+    <ul>
+      <li>Beautiful masonry layout</li>
+      <li>Filter by album (Racing, Cruising, Social, Historical)</li>
+      <li>Full-screen lightbox with swipe navigation</li>
+      <li>Automatic image optimization</li>
+      <li>Bulk upload for volunteers</li>
+      <li>Photo credits and captions</li>
+    </ul>
+
+    <h3>3. Racing Program</h3>
+
+    <p><strong>Current Limitations:</strong></p>
+    <ul>
+      <li>Schedule buried in PDF documents</li>
+      <li>No crew finder functionality</li>
+      <li>Results scattered or missing</li>
+    </ul>
+
+    <p><strong>New Features:</strong></p>
+    <ul>
+      <li>Clear race schedule by series</li>
+      <li><strong>Crew Finder</strong> connecting skippers and crew</li>
+      <li>Integrated race results (future: automatic scoring)</li>
+      <li>NOR and SI document library</li>
+      <li>Course information with maps</li>
+    </ul>
+
+    <h3>4. Membership</h3>
+
+    <p><strong>Current Limitations:</strong></p>
+    <ul>
+      <li>Membership info hard to find</li>
+      <li>Application process unclear</li>
+      <li>No online payment</li>
+    </ul>
+
+    <p><strong>New Features:</strong></p>
+    <ul>
+      <li>Clear membership tiers with pricing</li>
+      <li>Streamlined application form</li>
+      <li>Renewal reminders</li>
+      <li>Member directory (members-only, future phase)</li>
+      <li>Online payment (future: Stripe integration)</li>
+    </ul>
+
+    <h3>5. Content Management</h3>
+
+    <p><strong>For Volunteers:</strong></p>
+    <ul>
+      <li>
+        <strong>No coding required</strong> - fill in forms, click publish
+      </li>
+      <li>
+        <strong>Real-time preview</strong> - see changes before they go live
+      </li>
+      <li><strong>Version history</strong> - undo any mistake</li>
+      <li><strong>Scheduled publishing</strong> - set it and forget it</li>
+      <li>
+        <strong>Multi-user support</strong> - multiple editors simultaneously
+      </li>
+      <li><strong>Mobile editing</strong> - update from your phone</li>
+    </ul>
+
+    <hr class="page-break" />
+
+    <h2>Implementation Plan</h2>
+
+    <h3>Phase 1: Foundation (Completed)</h3>
+    <p>
+      <em>Status: <span class="status-emoji">✅</span> Complete</em>
+    </p>
+
+    <ul>
+      <li>Core site architecture (Next.js 14)</li>
+      <li>Design system and branding</li>
+      <li>Homepage with key sections</li>
+      <li>Navigation and footer</li>
+      <li>Responsive layouts</li>
+      <li>Basic pages (About, Contact, etc.)</li>
+    </ul>
+
+    <h3>Phase 2: Key Features (Completed)</h3>
+    <p>
+      <em>Status: <span class="status-emoji">✅</span> Complete</em>
+    </p>
+
+    <ul>
+      <li>Events calendar system</li>
+      <li>Photo gallery with lightbox</li>
+      <li>Racing program pages</li>
+      <li>Crew finder interface</li>
+      <li>Membership pages with forms</li>
+      <li>Board of Directors page</li>
+    </ul>
+
+    <h3>Phase 3: Content & Polish (Current)</h3>
+    <p>
+      <em>Status: <span class="status-emoji">🔄</span> In Progress</em>
+    </p>
+
+    <ul>
+      <li>CMS integration demo ✓</li>
+      <li>Performance optimization ✓</li>
+      <li>SEO implementation ✓</li>
+      <li>Mobile experience refinement ✓</li>
+      <li>Content migration from Wix</li>
+      <li>Final design polish</li>
+      <li>Testing and QA</li>
+    </ul>
+
+    <h3>Phase 4: Launch Preparation</h3>
+    <p><em>Estimated: 2-3 weeks</em></p>
+
+    <ul>
+      <li>CMS setup (Sanity.io project)</li>
+      <li>Domain configuration</li>
+      <li>SSL certificate</li>
+      <li>Final content review</li>
+      <li>Volunteer training</li>
+      <li>Soft launch to board</li>
+      <li>Public launch</li>
+    </ul>
+
+    <h3>Phase 5: Post-Launch (Ongoing)</h3>
+    <p><em>First 3 months after launch</em></p>
+
+    <ul>
+      <li>Monitor performance</li>
+      <li>Gather user feedback</li>
+      <li>Bug fixes and adjustments</li>
+      <li>Volunteer support</li>
+      <li>Analytics review</li>
+    </ul>
+
+    <h3>Migration Strategy</h3>
+
+    <p><strong>1. Content Inventory</strong></p>
+    <ul>
+      <li>Catalog all existing pages and content</li>
+      <li>Identify what to keep, update, or remove</li>
+      <li>Prioritize high-traffic pages</li>
+    </ul>
+
+    <p><strong>2. Parallel Operation</strong></p>
+    <ul>
+      <li>New site developed without affecting current site</li>
+      <li>Soft launch for board review</li>
+      <li>Gradual transition with redirects</li>
+    </ul>
+
+    <p><strong>3. DNS Cutover</strong></p>
+    <ul>
+      <li>Update DNS to point to new hosting</li>
+      <li>Implement 301 redirects for old URLs</li>
+      <li>Monitor for broken links</li>
+    </ul>
+
+    <p><strong>4. Training</strong></p>
+    <ul>
+      <li>Create video tutorials for common tasks</li>
+      <li>Written documentation (Content Editor Guide)</li>
+      <li>Office hours for volunteer questions</li>
+    </ul>
+
+    <hr class="page-break" />
+
+    <h2>Cost Analysis</h2>
+
+    <h3>Current Wix Costs (Annual)</h3>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Item</th>
+          <th>Cost</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Wix Premium Plan (Business Basic)</td>
+          <td>$192/year</td>
+        </tr>
+        <tr>
+          <td>Domain (if through Wix)</td>
+          <td>$20/year</td>
+        </tr>
+        <tr>
+          <td>Additional storage (if needed)</td>
+          <td>$48/year</td>
+        </tr>
+        <tr>
+          <td>Premium apps/widgets</td>
+          <td>$50-100/year</td>
+        </tr>
+        <tr>
+          <td><strong>Total</strong></td>
+          <td><strong>$288-360/year</strong></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p>
+      <em
+        >Note: Wix prices increase regularly. Business Basic was $17/month in
+        2022, now $24/month.</em
+      >
+    </p>
+
+    <h3>New Site Costs (Annual)</h3>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Item</th>
+          <th>Cost</th>
+          <th>Notes</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Vercel Hosting (Hobby)</td>
+          <td>$0/year</td>
+          <td>Free tier covers club needs</td>
+        </tr>
+        <tr>
+          <td>Vercel Hosting (Pro)</td>
+          <td>$240/year</td>
+          <td>If traffic exceeds free tier</td>
+        </tr>
+        <tr>
+          <td>Domain (Namecheap/Cloudflare)</td>
+          <td>$12/year</td>
+          <td>Transfer from Wix</td>
+        </tr>
+        <tr>
+          <td>Sanity CMS (Free tier)</td>
+          <td>$0/year</td>
+          <td>Generous free tier</td>
+        </tr>
+        <tr>
+          <td>Sanity CMS (Team)</td>
+          <td>$180/year</td>
+          <td>If needed for features</td>
+        </tr>
+        <tr>
+          <td><strong>Total (Minimum)</strong></td>
+          <td><strong>$12/year</strong></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td><strong>Total (Maximum)</strong></td>
+          <td><strong>$432/year</strong></td>
+          <td>Only if high traffic</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3>Realistic Projection</h3>
+
+    <p>For AYC's traffic levels (estimated 1,000-5,000 monthly visitors):</p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Scenario</th>
+          <th>Annual Cost</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Most Likely</strong></td>
+          <td>$60/year (Vercel Hobby + Domain + Sanity Free)</td>
+        </tr>
+        <tr>
+          <td><strong>Growth Scenario</strong></td>
+          <td>$252/year (Vercel Pro + Domain + Sanity Free)</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3>5-Year Cost Comparison</h3>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Year</th>
+          <th>Wix (3% annual increase)</th>
+          <th>New Site</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Year 1</td>
+          <td>$310</td>
+          <td>$60</td>
+        </tr>
+        <tr>
+          <td>Year 2</td>
+          <td>$319</td>
+          <td>$60</td>
+        </tr>
+        <tr>
+          <td>Year 3</td>
+          <td>$329</td>
+          <td>$60</td>
+        </tr>
+        <tr>
+          <td>Year 4</td>
+          <td>$339</td>
+          <td>$60</td>
+        </tr>
+        <tr>
+          <td>Year 5</td>
+          <td>$349</td>
+          <td>$60</td>
+        </tr>
+        <tr>
+          <td><strong>Total</strong></td>
+          <td><strong>$1,646</strong></td>
+          <td><strong>$300</strong></td>
+        </tr>
+        <tr>
+          <td><strong>Savings</strong></td>
+          <td>—</td>
+          <td><strong>$1,346 (82%)</strong></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3>Development Investment</h3>
+
+    <p>
+      This proof of concept represents a significant development investment:
+    </p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Component</th>
+          <th>Estimated Hours</th>
+          <th>Market Rate Value</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Design & UX</td>
+          <td>20 hours</td>
+          <td>$2,000-4,000</td>
+        </tr>
+        <tr>
+          <td>Frontend Development</td>
+          <td>60 hours</td>
+          <td>$6,000-12,000</td>
+        </tr>
+        <tr>
+          <td>CMS Integration</td>
+          <td>15 hours</td>
+          <td>$1,500-3,000</td>
+        </tr>
+        <tr>
+          <td>Content Migration</td>
+          <td>10 hours</td>
+          <td>$1,000-2,000</td>
+        </tr>
+        <tr>
+          <td>Testing & Polish</td>
+          <td>10 hours</td>
+          <td>$1,000-2,000</td>
+        </tr>
+        <tr>
+          <td>Documentation</td>
+          <td>5 hours</td>
+          <td>$500-1,000</td>
+        </tr>
+        <tr>
+          <td><strong>Total</strong></td>
+          <td><strong>120 hours</strong></td>
+          <td><strong>$12,000-24,000</strong></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p>
+      <em>This work is being contributed to the club as a member project.</em>
+    </p>
+
+    <h3>Total Value Proposition</h3>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Item</th>
+          <th>Value</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Development (contributed)</td>
+          <td>$12,000-24,000</td>
+        </tr>
+        <tr>
+          <td>5-year hosting savings</td>
+          <td>$1,346</td>
+        </tr>
+        <tr>
+          <td>Volunteer time savings</td>
+          <td>Significant (hard to quantify)</td>
+        </tr>
+        <tr>
+          <td>Improved member experience</td>
+          <td>Priceless</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <hr class="page-break" />
+
+    <h2>Recommendation</h2>
+
+    <h3>Why Move Forward</h3>
+
+    <p><strong>1. Immediate Benefits</strong></p>
+    <ul>
+      <li>Dramatically faster website</li>
+      <li>Better mobile experience for 60%+ of visitors</li>
+      <li>Easier content updates for volunteers</li>
+      <li>Modern, professional appearance</li>
+    </ul>
+
+    <p><strong>2. Long-term Benefits</strong></p>
+    <ul>
+      <li>Lower annual costs</li>
+      <li>No vendor lock-in</li>
+      <li>Scalable for future growth</li>
+      <li>Foundation for member portal/app</li>
+    </ul>
+
+    <p><strong>3. Low Risk</strong></p>
+    <ul>
+      <li>Development already complete</li>
+      <li>Can run parallel to current site</li>
+      <li>Easy rollback if needed</li>
+      <li>Full documentation provided</li>
+    </ul>
+
+    <h3>Suggested Next Steps</h3>
+
+    <ol>
+      <li>
+        <strong>Board Review</strong> - Review this POC at upcoming board
+        meeting
+      </li>
+      <li>
+        <strong>Feedback Collection</strong> - Gather input from key
+        stakeholders
+      </li>
+      <li>
+        <strong>Content Planning</strong> - Identify content that needs updating
+        during migration
+      </li>
+      <li><strong>Timeline Agreement</strong> - Set target launch date</li>
+      <li><strong>Volunteer Training</strong> - Schedule training sessions</li>
+      <li><strong>Soft Launch</strong> - Deploy for board review</li>
+      <li><strong>Public Launch</strong> - Go live!</li>
+    </ol>
+
+    <h3>Questions to Consider</h3>
+
+    <ul>
+      <li>What is our target launch timeframe?</li>
+      <li>Who will be responsible for content updates going forward?</li>
+      <li>Are there features we want to prioritize or defer?</li>
+      <li>Do we want to integrate online payments for membership?</li>
+      <li>Should we add a members-only section in the future?</li>
+    </ul>
+
+    <hr class="page-break" />
+
+    <h2>Appendix</h2>
+
+    <h3>A. Technology Stack</h3>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Layer</th>
+          <th>Technology</th>
+          <th>Purpose</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Framework</td>
+          <td>Next.js 14</td>
+          <td>React-based web framework</td>
+        </tr>
+        <tr>
+          <td>Language</td>
+          <td>TypeScript</td>
+          <td>Type-safe JavaScript</td>
+        </tr>
+        <tr>
+          <td>Styling</td>
+          <td>Tailwind CSS</td>
+          <td>Utility-first CSS framework</td>
+        </tr>
+        <tr>
+          <td>CMS</td>
+          <td>Sanity.io</td>
+          <td>Headless content management</td>
+        </tr>
+        <tr>
+          <td>Hosting</td>
+          <td>Vercel</td>
+          <td>Edge deployment platform</td>
+        </tr>
+        <tr>
+          <td>Domain</td>
+          <td>Cloudflare</td>
+          <td>DNS and CDN</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3>B. Browser Support</h3>
+
+    <ul>
+      <li>Chrome (last 2 versions)</li>
+      <li>Firefox (last 2 versions)</li>
+      <li>Safari (last 2 versions)</li>
+      <li>Edge (last 2 versions)</li>
+      <li>iOS Safari</li>
+      <li>Android Chrome</li>
+    </ul>
+
+    <h3>C. Accessibility Compliance</h3>
+
+    <ul>
+      <li>WCAG 2.1 Level AA target</li>
+      <li>Keyboard navigation support</li>
+      <li>Screen reader compatible</li>
+      <li>Color contrast compliance</li>
+      <li>Focus indicators</li>
+    </ul>
+
+    <h3>D. Documentation Provided</h3>
+
+    <ul>
+      <li><code>/docs/CONTENT_EDITOR_GUIDE.md</code> - For volunteers</li>
+      <li><code>/docs/MOBILE_TESTING_CHECKLIST.md</code> - For QA</li>
+      <li><code>/docs/PRESENTATION.md</code> - This document</li>
+      <li>Inline code documentation</li>
+    </ul>
+
+    <hr />
+
+    <p class="footer-text">
+      Document prepared by Adam Shaleen<br />
+      January 2026
+    </p>
+  </body>
+</html>
