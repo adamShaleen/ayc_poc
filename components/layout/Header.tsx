@@ -11,13 +11,7 @@ import { NAV_ITEMS, SITE_CONFIG } from "@/lib/constants";
 import { NavItem } from "@/types";
 
 // Desktop dropdown component
-function DesktopDropdown({
-  item,
-  isScrolled,
-}: {
-  item: NavItem;
-  isScrolled: boolean;
-}) {
+function DesktopDropdown({ item }: { item: NavItem }) {
   const [isOpen, setIsOpen] = useState(false);
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
   const pathname = usePathname();
@@ -44,13 +38,9 @@ function DesktopDropdown({
         href={item.href}
         className={cn(
           "inline-flex items-center gap-1 rounded-md px-4 py-2 font-medium transition-colors",
-          isScrolled
-            ? isActive
-              ? "bg-ocean-50 text-ocean-600"
-              : "text-navy-700 hover:bg-ocean-50 hover:text-ocean-600"
-            : isActive
-              ? "bg-white/20 text-white"
-              : "text-white/90 hover:bg-white/10 hover:text-white"
+          isActive
+            ? "bg-ocean-50 text-ocean-600"
+            : "text-navy-700 hover:bg-ocean-50 hover:text-ocean-600"
         )}
         aria-expanded={isOpen}
         aria-haspopup="true"
@@ -197,33 +187,8 @@ function MobileAccordion({
 }
 
 export function Header() {
-  const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const pathname = usePathname();
-
-  // Check if we're on a page with a hero (transparent header)
-  const hasHero = pathname === "/";
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
-    };
-
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
-  // Close mobile menu on resize
-  useEffect(() => {
-    const handleResize = () => {
-      if (window.innerWidth >= 1024) {
-        setIsMobileMenuOpen(false);
-      }
-    };
-
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
 
   // Close mobile menu on route change
   useEffect(() => {
@@ -242,17 +207,9 @@ export function Header() {
     };
   }, [isMobileMenuOpen]);
 
-  // Determine header style
-  const showTransparent = hasHero && !isScrolled && !isMobileMenuOpen;
-
   return (
     <header
-      className={cn(
-        "fixed left-0 right-0 top-0 z-50 transition-all duration-300",
-        showTransparent
-          ? "bg-transparent py-4"
-          : "bg-white/95 py-2 shadow-md backdrop-blur-sm"
-      )}
+      className="fixed left-0 right-0 top-0 z-50 bg-white py-2 shadow-md"
       role="banner"
     >
       <Container>
@@ -264,27 +221,13 @@ export function Header() {
           {/* Logo */}
           <Link
             href="/"
-            className="flex items-center gap-2 transition-all duration-300"
+            className="flex items-center gap-2"
             aria-label="Astoria Yacht Club - Home"
           >
             {/* Burgee-style logo */}
-            <div
-              className={cn(
-                "relative flex items-center justify-center rounded-sm transition-all duration-300",
-                showTransparent
-                  ? "h-10 w-12 bg-white/20 backdrop-blur-sm"
-                  : "h-8 w-10 bg-navy-700"
-              )}
-            >
+            <div className="relative flex h-8 w-10 items-center justify-center rounded-sm bg-navy-700">
               <div className="absolute inset-0 overflow-hidden rounded-sm">
-                <div
-                  className={cn(
-                    "absolute inset-0",
-                    showTransparent
-                      ? "bg-gradient-to-r from-white/30 via-ocean-400/50 to-white/30"
-                      : "bg-gradient-to-r from-navy-700 via-ocean-500 to-navy-700"
-                  )}
-                />
+                <div className="absolute inset-0 bg-gradient-to-r from-navy-700 via-ocean-500 to-navy-700" />
                 <div
                   className={cn(
                     "absolute bottom-0 left-1/2 h-0 w-0 -translate-x-1/2",
@@ -293,61 +236,29 @@ export function Header() {
                   )}
                 />
               </div>
-              <Anchor
-                className={cn(
-                  "relative z-10 text-white transition-all duration-300",
-                  showTransparent ? "h-5 w-5" : "h-4 w-4"
-                )}
-              />
+              <Anchor className="relative z-10 h-4 w-4 text-white" />
             </div>
 
             {/* Text */}
-            <div
-              className={cn(
-                "flex flex-col transition-all duration-300",
-                showTransparent ? "gap-0.5" : "gap-0"
-              )}
-            >
-              <span
-                className={cn(
-                  "font-bold leading-none transition-all duration-300",
-                  showTransparent
-                    ? "text-lg text-white drop-shadow-md"
-                    : "text-base text-navy-700"
-                )}
-              >
-                {SITE_CONFIG.shortName}
-              </span>
-              {showTransparent && (
-                <span className="text-xs leading-none text-white/80">
-                  Est. {SITE_CONFIG.established}
-                </span>
-              )}
-            </div>
+            <span className="text-base font-bold leading-none text-navy-700">
+              {SITE_CONFIG.shortName}
+            </span>
           </Link>
 
           {/* Desktop Navigation */}
           <div className="hidden items-center gap-1 lg:flex">
             {NAV_ITEMS.map((item) =>
               item.children ? (
-                <DesktopDropdown
-                  key={item.href}
-                  item={item}
-                  isScrolled={!showTransparent}
-                />
+                <DesktopDropdown key={item.href} item={item} />
               ) : (
                 <Link
                   key={item.href}
                   href={item.href}
                   className={cn(
                     "rounded-md px-4 py-2 font-medium transition-colors",
-                    showTransparent
-                      ? pathname === item.href
-                        ? "bg-white/20 text-white"
-                        : "text-white/90 hover:bg-white/10 hover:text-white"
-                      : pathname === item.href
-                        ? "bg-ocean-50 text-ocean-600"
-                        : "text-navy-700 hover:bg-ocean-50 hover:text-ocean-600"
+                    pathname === item.href
+                      ? "bg-ocean-50 text-ocean-600"
+                      : "text-navy-700 hover:bg-ocean-50 hover:text-ocean-600"
                   )}
                 >
                   {item.label}
@@ -356,17 +267,16 @@ export function Header() {
             )}
           </div>
 
-          {/* CTA Button (Desktop) */}
-          <div className="hidden lg:block">
-            <Button
-              variant={showTransparent ? "outline" : "primary"}
-              size={showTransparent ? "md" : "sm"}
-              className={cn(
-                showTransparent &&
-                  "border-white text-white hover:bg-white hover:text-navy-700"
-              )}
+          {/* CTA Buttons (Desktop) */}
+          <div className="hidden items-center gap-3 lg:flex">
+            <Link
+              href="/login"
+              className="text-sm font-medium text-navy-700 hover:text-ocean-600"
             >
-              Join the Club
+              Member Login
+            </Link>
+            <Button variant="primary" size="sm" asChild>
+              <Link href="/membership/join">Join the Club</Link>
             </Button>
           </div>
 
@@ -375,10 +285,8 @@ export function Header() {
             type="button"
             className={cn(
               "rounded-md p-2 transition-colors lg:hidden",
-              "focus:outline-none focus:ring-2 focus:ring-offset-2",
-              showTransparent
-                ? "text-white hover:bg-white/10 focus:ring-white/50 focus:ring-offset-transparent"
-                : "text-navy-700 hover:bg-ocean-50 focus:ring-ocean-500"
+              "text-navy-700 hover:bg-ocean-50",
+              "focus:outline-none focus:ring-2 focus:ring-ocean-500 focus:ring-offset-2"
             )}
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             aria-expanded={isMobileMenuOpen}
@@ -398,8 +306,7 @@ export function Header() {
       <div
         id="mobile-menu"
         className={cn(
-          "fixed inset-x-0 bottom-0 z-40 bg-white transition-all duration-300 lg:hidden",
-          isScrolled || isMobileMenuOpen ? "top-[52px]" : "top-[68px]",
+          "fixed inset-x-0 bottom-0 top-[52px] z-40 bg-white lg:hidden",
           isMobileMenuOpen
             ? "visible translate-x-0 opacity-100"
             : "invisible translate-x-full opacity-0"
@@ -416,14 +323,21 @@ export function Header() {
               />
             ))}
 
-            <div className="mt-6 border-t border-gray-200 pt-6">
-              <Button
-                variant="primary"
-                size="lg"
-                className="w-full"
+            <div className="mt-6 space-y-3 border-t border-gray-200 pt-6">
+              <Link
+                href="/login"
+                className="block rounded-lg border border-gray-200 px-4 py-3 text-center font-medium text-navy-700 hover:bg-gray-50"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
-                Join the Club
+                Member Login
+              </Link>
+              <Button variant="primary" size="lg" className="w-full" asChild>
+                <Link
+                  href="/membership/join"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  Join the Club
+                </Link>
               </Button>
             </div>
           </div>

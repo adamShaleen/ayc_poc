@@ -1,24 +1,16 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import Image from "next/image";
 import { ChevronDown } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
 import { cn } from "@/lib/utils";
 
+// Tiny blurred placeholder (ocean/sky gradient colors)
+const blurDataURL =
+  "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAiIGhlaWdodD0iNzUiPjxkZWZzPjxsaW5lYXJHcmFkaWVudCBpZD0iZyIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPjxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiM2Yjg1YTMiLz48c3RvcCBvZmZzZXQ9IjUwJSIgc3RvcC1jb2xvcj0iIzRhNmY4YSIvPjxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iIzJkNGE1ZSIvPjwvbGluZWFyR3JhZGllbnQ+PC9kZWZzPjxyZWN0IGZpbGw9InVybCgjZykiIHdpZHRoPSIxMDAiIGhlaWdodD0iNzUiLz48L3N2Zz4=";
+
 export function Hero() {
-  const [scrollY, setScrollY] = useState(0);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setScrollY(window.scrollY);
-    };
-
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
   const scrollToContent = () => {
     const quickActions = document.getElementById("quick-actions");
     if (quickActions) {
@@ -27,21 +19,19 @@ export function Hero() {
   };
 
   return (
-    <section className="relative h-[90vh] min-h-[600px] overflow-hidden">
-      {/* Background Image with Parallax Effect */}
-      <div
-        className="absolute inset-0 z-0 scale-110"
-        style={{
-          transform: `translateY(${scrollY * 0.4}px)`,
-        }}
-      >
+    <section className="relative h-[90vh] min-h-[600px] overflow-hidden bg-black">
+      {/* Background Image */}
+      <div className="absolute inset-0 z-0">
         <Image
           src="/images/homepage.jpeg"
           alt="Sailing on the Columbia River at Astoria Yacht Club"
           fill
           className="object-cover"
           priority
-          quality={90}
+          quality={80}
+          sizes="100vw"
+          placeholder="blur"
+          blurDataURL={blurDataURL}
         />
       </div>
 
@@ -97,20 +87,20 @@ export function Hero() {
           aria-label="Scroll to content"
         >
           <span className="text-sm font-medium">Explore</span>
-          <ChevronDown className="h-6 w-6 animate-bounce" />
+          <ChevronDown className="h-6 w-6" />
         </button>
       </Container>
 
       {/* Bottom wave decoration */}
-      <div className="absolute bottom-0 left-0 right-0 z-20">
+      <div className="absolute -bottom-px left-0 right-0 z-20">
         <svg
-          viewBox="0 0 1440 80"
+          viewBox="0 0 1440 120"
           fill="none"
-          className="w-full text-background"
+          className="block h-[80px] w-full text-background"
           preserveAspectRatio="none"
         >
           <path
-            d="M0 80L60 74.7C120 69 240 59 360 53.3C480 48 600 48 720 53.3C840 59 960 69 1080 69.3C1200 69 1320 59 1380 53.3L1440 48V80H1380C1320 80 1200 80 1080 80C960 80 840 80 720 80C600 80 480 80 360 80C240 80 120 80 60 80H0Z"
+            d="M0 40C240 40 240 80 480 80C720 80 720 40 960 40C1200 40 1200 80 1440 80V120H0V40Z"
             fill="currentColor"
           />
         </svg>
