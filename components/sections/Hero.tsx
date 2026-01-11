@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { ChevronDown } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
@@ -60,8 +61,9 @@ export function Hero() {
             variant="primary"
             size="lg"
             className="min-w-[180px] text-lg shadow-xl hover:shadow-2xl"
+            asChild
           >
-            Find Crew
+            <Link href="/racing/crew">Find Crew</Link>
           </Button>
           <Button
             variant="outline"
@@ -71,8 +73,9 @@ export function Hero() {
               "hover:bg-white hover:text-navy-700",
               "shadow-xl hover:shadow-2xl"
             )}
+            asChild
           >
-            Join the Club
+            <Link href="/membership/join">Join the Club</Link>
           </Button>
         </div>
 
