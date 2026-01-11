@@ -17,8 +17,9 @@ This document presents a proof-of-concept for a custom-built website to potentia
 ### Quick Start Guide
 
 1. Open the URL in any modern web browser (Chrome, Safari, Firefox, Edge)
-2. The site works on all devices—try it on your phone, tablet, and computer
-3. No login required to explore
+2. **IMPORTANT**: Please test on your mobile phone! The mobile experience is where the custom solution really shines compared to Wix. Open the site on your phone to see the difference in speed and usability.
+3. The site works on all devices—try it on your phone, tablet, and computer
+4. No login required to explore
 
 ### Complete Feature Walkthrough
 
@@ -67,31 +68,41 @@ This document presents a proof-of-concept for a custom-built website to potentia
 
 #### Interactive Demo Features
 
-**Demo Section** (`/demo`)
+The demo section showcases advanced features that could be integrated into the final site. These are separate demo pages that illustrate specific capabilities:
 
-This special section showcases advanced features that could be integrated:
+**How to Access the Demos:**
+Navigate directly to these URLs to see each demo:
 
-1. **Interactive Forms**
+1. **Content Management System Demo** (`/demo/cms`)
+   - Visit: https://ayc-poc.vercel.app/demo/cms
+   - Shows how administrators would update content
+   - Visual editing capabilities
+   - Media library management
+   - User-friendly interface for non-technical staff
+
+2. **Mobile Experience Demo** (`/demo/mobile`)
+   - Visit: https://ayc-poc.vercel.app/demo/mobile
+   - **Best viewed on your phone!**
+   - Demonstrates mobile-optimized interface
+   - Touch-friendly navigation
+   - Fast loading on cellular networks
+   - Progressive Web App capabilities
+
+3. **Interactive Forms Demo** (`/demo/forms`)
+   - Visit: https://ayc-poc.vercel.app/demo/forms
    - Real-time validation
    - File upload capability
    - Multi-step wizards
    - Form submission confirmation
 
-2. **Member Portal Preview**
+4. **Member Portal Preview** (`/demo/portal`)
+   - Visit: https://ayc-poc.vercel.app/demo/portal
    - Dashboard concept
-   - Personalized content
+   - Personalized member content
    - Account management interface
+   - Event registration and history
 
-3. **Content Management Preview**
-   - How administrators would update content
-   - Visual editing capabilities
-   - Media library management
-
-4. **Integration Examples**
-   - Weather widget
-   - Tide tables
-   - Social media feeds
-   - Email newsletter signup
+**Note**: These demos are interactive—click around and try the features!
 
 ---
 
@@ -125,12 +136,16 @@ Our existing Wix website has served us well and represents significant effort by
 ### Cost Analysis
 
 #### Wix Platform Costs
-- **Business Basic**: $27/month = $324/year
-- **Business Unlimited**: $32/month = $384/year
-- **Business VIP**: $45/month = $540/year
-- **5-Year Total**: $1,620 - $2,700
 
-Additional potential Wix costs:
+**Monthly Plans:**
+
+- Business Basic: $27/month = $324/year
+- Business Unlimited: $32/month = $384/year
+- Business VIP: $45/month = $540/year
+- **5-Year Total: $1,620 - $2,700**
+
+**Additional Potential Costs:**
+
 - Premium apps from marketplace
 - Increased storage
 - Additional team member accounts
@@ -139,27 +154,27 @@ Additional potential Wix costs:
 
 #### Custom AWS Solution Costs
 
-**Production AWS Implementation (Estimated)**
+**Monthly AWS Services:**
 
-*Monthly AWS Services:*
-- **S3 (Static hosting/storage)**: $1-3
-- **CloudFront (CDN)**: $1-5
-- **Lambda (Serverless functions)**: $0-2
-- **DynamoDB or RDS (Database)**: $0-5
-- **Route 53 (DNS)**: $0.50
-- **API Gateway**: $0-2
-- **SES (Email service)**: $0-1
-- **CloudWatch (Monitoring)**: $0-2
-- **Estimated Monthly Total**: $5-15
+- S3 (Static hosting/storage): $1-3
+- CloudFront (CDN): $1-5
+- Lambda (Serverless functions): $0-2
+- DynamoDB or RDS (Database): $0-5
+- Route 53 (DNS): $0.50
+- API Gateway: $0-2
+- SES (Email service): $0-1
+- CloudWatch (Monitoring): $0-2
+- **Estimated Monthly Total: $5-15**
 
-*Annual Costs:*
-- **AWS Services**: $60-180/year
-- **Domain Registration**: $12-15/year
-- **Annual Total**: $72-195/year
+**Annual Costs:**
 
-*5-Year Total: $360-975*
+- AWS Services: $60-180/year
+- Domain Registration: $12-15/year
+- **Annual Total: $72-195/year**
+- **5-Year Total: $360-975**
 
-**Cost Notes:**
+**Cost Considerations:**
+
 - AWS uses pay-per-use pricing—you only pay for what you consume
 - Estimates assume modest traffic (typical for yacht club website)
 - AWS Free Tier covers many services for the first 12 months
@@ -167,7 +182,7 @@ Additional potential Wix costs:
 - No surprise "upgrade required" fees for additional features
 - Database, authentication, file storage all included in estimates
 
-**Potential Savings**: $1,260 - $2,340 over 5 years (vs. Wix)
+**Potential Savings: $1,260 - $2,340 over 5 years** (compared to Wix)
 
 ### Performance Comparison
 
@@ -254,25 +269,31 @@ Should I leave the club or become unavailable:
 This concern is addressed through comprehensive documentation and standard technology:
 
 **Documentation for Non-Technical Users:**
-- **User Manuals**: Step-by-step guides with screenshots for every common task
-- **Video Walkthroughs**: Screen recordings showing exactly how to update content, add events, upload photos, etc.
-- **Quick Reference Guides**: One-page cheat sheets for frequent operations
-- **FAQ Document**: Answers to common questions and solutions to typical issues
-- **Emergency Contacts**: List of AWS support resources and community forums
+
+I will create user-friendly documentation designed for club members with no technical background:
+- Step-by-step guides with screenshots for every common task
+- Screen recordings showing exactly how to update content, add events, upload photos, etc.
+- One-page cheat sheets for frequent operations
+- Answers to common questions and solutions to typical issues
+- List of AWS support resources and community forums
 
 **For Future Technical Volunteers:**
-- **Complete Codebase Documentation**: Every component and function explained
-- **Architecture Diagrams**: Visual guides to how the system works
-- **Setup Guides**: How to access and modify the AWS infrastructure
-- **Deployment Procedures**: How to push updates and changes
-- **Maintenance Checklists**: Regular tasks and their schedules
+
+Complete technical documentation will be provided for anyone who needs to modify or maintain the system:
+- Every component and function explained
+- Visual guides to how the system works
+- How to access and modify the AWS infrastructure
+- How to push updates and changes
+- Regular tasks and their schedules
 
 **Built-In Safeguards:**
+
+The technology stack ensures continuity regardless of personnel changes:
 - All code uses standard, well-documented technology (Next.js, React, AWS)
 - Any developer familiar with these common tools can understand and modify the system
 - AWS has extensive official documentation and tutorials
 - Large community support available online
-- If needed, professional AWS contractors are widely available
+- Professional AWS contractors are widely available if needed
 - No proprietary or custom frameworks—everything is industry-standard
 
 ### "Isn't custom development risky?"
